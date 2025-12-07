@@ -1,0 +1,60 @@
+version: '3.8'
+# for local development use (naka auto read pag walang .local)
+# run using "docker-compose -f docker-compose.local.yml up"
+
+# auto generated file - TODO:need to double check
+services:
+  # PostgreSQL Database
+  database:
+    image: postgres:16-alpine
+    container_name: game-db
+    environment:
+      POSTGRES_DB: gamedb
+      POSTGRES_USER: gameuser
+      POSTGRES_PASSWORD: gamepass
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./game/infrastructure/init-db:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - game-network
+
+  # C++ Backend Server
+  backend:
+    build:
+      context: ./game/backend
+      dockerfile: config/Dockerfile
+    container_name: game-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: gamedb
+      DB_USER: gameuser
+      DB_PASSWORD: gamepass
+    networks:
+      - game-network
+
+  # Frontend Nginx Server
+  frontend:
+    build:
+      context: ./game/frontend
+      dockerfile: config/Dockerfile
+    container_name: game-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - game-network
+
+volumes:
+  postgres_data:
+
+networks:
+  game-network:
+    driver: bridge
