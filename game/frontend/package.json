@@ -1,0 +1,25 @@
+{
+  "name": "web-game-frontend",
+  "version": "1.0.0",
+  "description": "Vanilla JS frontend and WASM builder for multiplayer game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server dist",
+    "build": "npm run clean && npm run compile-wasm && npm run copy-assets",
+    "clean": "rm -rf dist",
+    "compile-wasm": "emcc src/wasm_core/player_physics.cpp -o dist/game.js -s WASM=1 -s EXPORTED_RUNTIME_METHODS=ccall",
+    "copy-assets": "copyfiles src/*.html src/*.css src/assets/**/* dist"
+  },
+  "keywords": [
+    "wasm",
+    "emscripten",
+    "vanillajs"
+  ],
+  "author": "Be1l-ai <cantigakenlester@example.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "emscripten": "lastest"
+  }
+}
