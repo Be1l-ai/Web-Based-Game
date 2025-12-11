@@ -1,0 +1,17 @@
+# auto generated file - do not edit
+
+# Windows profile for MSVC (Visual Studio 2022)
+[settings]
+os=Windows
+arch=x86_64
+compiler=msvc
+compiler.version=193
+compiler.runtime=dynamic
+compiler.cppstd=20
+build_type=Release
+
+[options]
+
+[buildenv]
+
+[conf]

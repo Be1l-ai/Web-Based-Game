@@ -1,0 +1,36 @@
+# auto generated code
+
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+server_app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Conan cache
+.conan/
+.conan2/
+conan.lock
+conaninfo.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Environment
+.env
+.env.*

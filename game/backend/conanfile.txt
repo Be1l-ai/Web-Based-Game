@@ -1,0 +1,12 @@
+# auto generated file - can edit to add dependencies/module/libraries
+
+[requires]
+# add dependencies here
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[options]
+
+[imports]
